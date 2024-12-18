@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <title>Kubescape Scan Report</title>
+  </head>
+  <style>
+  :root {
+    --cell-padding-vertical: 0.25em;
+    --cell-padding-horizontal: 0.25em;
+    --font-family-sans: system-ui, -apple-system, sans-serif;
+  }
+  body {
+    max-width: 60em;
+    margin: auto;
+    font-family: var(--font-family-sans);
+  }
+  table {
+    width: 100%;
+    border-top: 0.1em solid black;
+    border-bottom: 0.1em solid black;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  th {
+    text-align: left;
+  }
+  td, th {
+    padding-top: var(--cell-padding-vertical);
+    padding-bottom: var(--cell-padding-vertical);
+    padding-right: var(--cell-padding-horizontal);
+    vertical-align: top;
+  }
+  td > p {
+    margin: 0;
+    word-break: break-all;
+    hyphens: auto;
+  }
+  thead {
+    border-bottom: 0.01em solid black;
+  }
+  .numericCell {
+    text-align: right;
+  }
+  .controlSeverityCell {
+    width: 10%;
+  }
+  .controlNameCell {
+    width: 50%;
+  }
+  .controlRiskCell {
+    width: 10%;
+  }
+  .resourceSeverityCell {
+    width: 10%;
+  }
+  .resourceNameCell {
+    width: 30%;
+  }
+  .resourceURLCell {
+    width: 10%;
+  }
+  .resourceRemediationCell {
+    width: 50%;
+  }
+  .logo {
+    width: 25%;
+    float: right;
+  }
+  </style>
+  <body>
+    <img class="logo" src="https://raw.githubusercontent.com/5GSEC/kubescape/refs/heads/seran/core/pkg/resultshandling/printer/v2/pdf/logo.png">
+    <h1>5G Blueprint Scan Report</h1>
+    
+    </br>
+    <h2>Summary:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>All</th>
+          <th>Failed</th>
+          <th>Skipped</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>6</td>
+          <td>5</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+    </br>
+    <h2>Details</h2>
+    <table>
+      <thead>
+      <tr>
+        <th class="controlSeverityCell">Severity</th>
+        <th class="controlNameCell">Control Name</th>
+        <th class="controlRiskCell">Failed Resources</th>
+        <th class="controlRiskCell">All Resources</th>
+        <th class="controlRiskCell">Risk Score, %</th>
+      </tr>
+      </thead>
+      <tbody>
+      
+      
+        <tr>
+          <td class="controlSeverityCell">High</td>
+          <td class="controlNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="controlRiskCell numericCell">10</td>
+          <td class="controlRiskCell numericCell">23</td>
+          <td class="controlRiskCell numericCell">41</td>
+        </tr>
+      </tr>
+      
+        <tr>
+          <td class="controlSeverityCell">High</td>
+          <td class="controlNameCell">Insecure capabilities</td>
+          <td class="controlRiskCell numericCell">3</td>
+          <td class="controlRiskCell numericCell">31</td>
+          <td class="controlRiskCell numericCell">9</td>
+        </tr>
+      </tr>
+      
+        <tr>
+          <td class="controlSeverityCell">High</td>
+          <td class="controlNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="controlRiskCell numericCell">9</td>
+          <td class="controlRiskCell numericCell">24</td>
+          <td class="controlRiskCell numericCell">36</td>
+        </tr>
+      </tr>
+      
+        <tr>
+          <td class="controlSeverityCell">High</td>
+          <td class="controlNameCell">Workloads with Critical vulnerabilities exposed to external traffic</td>
+          <td class="controlRiskCell numericCell">0</td>
+          <td class="controlRiskCell numericCell">0</td>
+          <td class="controlRiskCell numericCell">0</td>
+        </tr>
+      </tr>
+      
+        <tr>
+          <td class="controlSeverityCell">Medium</td>
+          <td class="controlNameCell">Allow privilege escalation</td>
+          <td class="controlRiskCell numericCell">17</td>
+          <td class="controlRiskCell numericCell">31</td>
+          <td class="controlRiskCell numericCell">53</td>
+        </tr>
+      </tr>
+      
+        <tr>
+          <td class="controlSeverityCell">Medium</td>
+          <td class="controlNameCell">Workload with cluster takeover roles</td>
+          <td class="controlRiskCell numericCell">4</td>
+          <td class="controlRiskCell numericCell">31</td>
+          <td class="controlRiskCell numericCell">12</td>
+        </tr>
+      </tr>
+      
+      <tbody>
+    </table>
+    
+    </br>
+    <h2>Failed Resources:</h2>
+    </br>
+    
+    
+    <h3>Name: feeder-service</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: feeder-service</p>
+      <p>Namespace: agents</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0002.md">5G-0002</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: agents-operator</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: agents-operator</p>
+      <p>Namespace: agents</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0002.md">5G-0002</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Workload with cluster takeover roles</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0267.md">C-0267</a></td>
+          <td class="resourceRemediationCell"> <p>subjects[0]</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: shared-informer-agent</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: shared-informer-agent</p>
+      <p>Namespace: agents</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0002.md">5G-0002</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Workload with cluster takeover roles</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0267.md">C-0267</a></td>
+          <td class="resourceRemediationCell"> <p>subjects[0]</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: discovery-engine</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: discovery-engine</p>
+      <p>Namespace: agents</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0002.md">5G-0002</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[2].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[2].securityContext.privileged=false</p>  <p>spec.template.spec.containers[3].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[3].securityContext.privileged=false</p>  <p>spec.template.spec.containers[1].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[1].securityContext.privileged=false</p>  <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: policy-enforcement-agent</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: policy-enforcement-agent</p>
+      <p>Namespace: agents</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0002.md">5G-0002</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: kube-apiserver-edge-87frq-7xw4q</h3>
+      <p>ApiVersion: v1</p>
+      <p>Kind: Pod</p>
+      <p>Name: kube-apiserver-edge-87frq-7xw4q</p>
+      <p>Namespace: kube-system</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: kube-controller-manager-edge-87frq-7xw4q</h3>
+      <p>ApiVersion: v1</p>
+      <p>Kind: Pod</p>
+      <p>Name: kube-controller-manager-edge-87frq-7xw4q</p>
+      <p>Namespace: kube-system</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: etcd-edge-87frq-7xw4q</h3>
+      <p>ApiVersion: v1</p>
+      <p>Kind: Pod</p>
+      <p>Name: etcd-edge-87frq-7xw4q</p>
+      <p>Namespace: kube-system</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: kube-multus-ds</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: DaemonSet</p>
+      <p>Name: kube-multus-ds</p>
+      <p>Namespace: kube-system</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Workload with cluster takeover roles</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0267.md">C-0267</a></td>
+          <td class="resourceRemediationCell"> <p>subjects[0]</p> </td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: kube-proxy</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: DaemonSet</p>
+      <p>Name: kube-proxy</p>
+      <p>Namespace: kube-system</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: kindnet</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: DaemonSet</p>
+      <p>Name: kindnet</p>
+      <p>Namespace: kube-system</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Insecure capabilities</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0046.md">C-0046</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.capabilities.add[0]</p>  <p>spec.template.spec.containers[0].securityContext.capabilities.add[1]</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: kube-scheduler-edge-87frq-7xw4q</h3>
+      <p>ApiVersion: v1</p>
+      <p>Kind: Pod</p>
+      <p>Name: kube-scheduler-edge-87frq-7xw4q</p>
+      <p>Namespace: kube-system</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: kubearmor-bpf-containerd-98c2c</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: DaemonSet</p>
+      <p>Name: kubearmor-bpf-containerd-98c2c</p>
+      <p>Namespace: kubearmor</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Insecure capabilities</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0046.md">C-0046</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.capabilities.add[2]</p>  <p>spec.template.spec.containers[0].securityContext.capabilities.add[3]</p>  <p>spec.template.spec.containers[0].securityContext.capabilities.add[4]</p>  <p>spec.template.spec.containers[0].securityContext.capabilities.add[5]</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: speaker</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: DaemonSet</p>
+      <p>Name: speaker</p>
+      <p>Namespace: metallb-system</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Insecure capabilities</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0046.md">C-0046</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.capabilities.add[0]</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Workload with cluster takeover roles</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0267.md">C-0267</a></td>
+          <td class="resourceRemediationCell"> <p>subjects[0]</p> </td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: upf-edge</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: upf-edge</p>
+      <p>Namespace: oai-core</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0002.md">5G-0002</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: oai-gnb-cu-up</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: oai-gnb-cu-up</p>
+      <p>Namespace: oai-ran-cuup</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: oai-gnb-du</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: oai-gnb-du</p>
+      <p>Namespace: oai-ran-du</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0002.md">5G-0002</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: oai-ran-operator</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: oai-ran-operator</p>
+      <p>Namespace: oai-ran-operators</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0002.md">5G-0002</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Name: oai-nr-ue</h3>
+      <p>ApiVersion: apps/v1</p>
+      <p>Kind: Deployment</p>
+      <p>Name: oai-nr-ue</p>
+      <p>Namespace: oai-ue</p>
+      <table>
+        <thead>
+        <tr>
+          <th class="resourceSeverityCell">Severity</th>
+          <th class="resourceNameCell">Name</th>
+          <th class="resourceURLCell">Docs</th>
+          <th class="resourceRemediationCell">Assisted Remediation</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Least Permissive Policies for Sensitive Assets</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0002.md">5G-0002</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">Medium</td>
+          <td class="resourceNameCell">Allow privilege escalation</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/c-0016.md">C-0016</a></td>
+          <td class="resourceRemediationCell"> <p>spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation=false</p>  <p>spec.template.spec.containers[0].securityContext.privileged=false</p> </td>
+        </tr>
+        
+        <tr>
+          <td class="resourceSeverityCell">High</td>
+          <td class="resourceNameCell">Ingress/Egress from the necessary workloads</td>
+          <td class="resourceURLCell"><a href="https://github.com/5gsec/5g-blueprint-controls/blob/main/controls/5g-0001.md">5G-0001</a></td>
+          <td class="resourceRemediationCell"></td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+  </body>
+</html>
