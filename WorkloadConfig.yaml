@@ -1,0 +1,175 @@
+apiVersion: security.seran.org/v1alpha1
+kind: WorkloadConfig
+metadata:
+  name: oai-workload-config
+spec:
+  workloads:
+    - workload_name: CUUP
+      labels:
+        app.kubernetes.io/name: oai-gnb-cu-up
+      policies:
+        - name: ksp-oran-cuup-zero-trust
+          description: This is a zero trust Kubearmor Policy for ORAN CUUP, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-cuup-netpol
+          description: This is a Network Policy for ORAN CUUP, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-oran-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy       
+        - name: kyverno-oran-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy  
+
+    - workload_name: DU
+      labels:
+        app.kubernetes.io/name: oai-gnb-du
+      policies:
+        - name: ksp-oran-du-zero-trust
+          description: This is a zero trust Kubearmor Policy for ORAN DU, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-du-netpol
+          description: This is a Network Policy for ORAN DU, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-oran-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+        - name: kyverno-oran-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+
+    - workload_name: UDR
+      labels:
+        workload.nephio.org/oai: udr
+      policies:
+        - name: ksp-core-udr-zero-trust
+          description: This is a zero trust Kubearmor Policy for 5GCORE UDR, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-udr-netpol
+          description: This is a Network Policy for 5GCORE UDR component, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-core-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+        - name: kyverno-core-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+
+    - workload_name: AMF
+      labels:
+        workload.nephio.org/oai: amf
+      policies:
+        - name: ksp-core-amf-zero-trust
+          description: This is a zero trust Kubearmor Policy for 5GCORE AMF component, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-amf-netpol
+          description: This is a Network Policy for 5GCORE AMF component, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-core-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+        - name: kyverno-core-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+
+    - workload_name: AUSF
+      labels:
+        workload.nephio.org/oai: ausf
+      policies:
+        - name: ksp-core-ausf-zero-trust
+          description: This is a zero trust Kubearmor Policy for 5GCORE AUSF component, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-ausf-netpol
+          description: This is a Network Policy for 5GCORE AUSF component, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-core-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+        - name: kyverno-core-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+
+    - workload_name: NRF
+      labels:
+        workload.nephio.org/oai: nrf
+      policies:
+        - name: ksp-core-nrf-zero-trust
+          description: This is a zero trust Kubearmor Policy for 5GCORE NRF component, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-nrf-netpol
+          description: This is a Network Policy for 5GCORE NRF component, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-core-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+        - name: kyverno-core-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+
+    - workload_name: SMF
+      labels:
+        workload.nephio.org/oai: smf
+      policies:
+        - name: ksp-core-smf-zero-trust
+          description: This is a zero trust Kubearmor Policy for 5GCORE SMF component, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-smf-netpol
+          description: This is a Network Policy for 5GCORE SMF component, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-core-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+        - name: kyverno-core-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+
+    - workload_name: UDM
+      labels:
+        workload.nephio.org/oai: udm
+      policies:
+        - name: ksp-core-udm-zero-trust
+          description: This is a zero trust Kubearmor Policy for 5GCORE UDM component, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-udm-netpol
+          description: This is a Network Policy for 5GCORE UDM component, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-core-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+        - name: kyverno-core-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+
+    - workload_name: UDR
+      labels:
+        workload.nephio.org/oai: udr
+      policies:
+        - name: ksp-core-udr-zero-trust
+          description: This is a zero trust Kubearmor Policy for 5GCORE UDR component, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-udr-netpol
+          description: This is a Network Policy for 5GCORE UDR component, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-core-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+        - name: kyverno-core-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+
+    - workload_name: UPF
+      labels:
+        workload.nephio.org/oai: upf
+      policies:
+        - name: ksp-core-upf-zero-trust
+          description: This is a zero trust Kubearmor Policy for 5GCORE UPF component, which blocks external access to sensitive assets.
+          kind: KubeArmorPolicy
+        - name: oran-upf-netpol
+          description: This is a Network Policy for 5GCORE UPF component, which allows network access to certain ports.
+          kind: NetworkPolicy
+        - name: kyverno-core-readonly-volume-mounts
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
+        - name: kyverno-core-restrict-sa-automount-sa-token
+          description: This admission policy ensures that all volume mounts in the cluster are read only.
+          kind: ClusterPolicy 
