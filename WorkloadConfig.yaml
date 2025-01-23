@@ -20,6 +20,7 @@ spec:
         - name: kyverno-oran-restrict-sa-automount-sa-token
           description: This admission policy ensures that all volume mounts in the cluster are read only.
           kind: ClusterPolicy  
+        
 
     - workload_name: DU
       labels:
@@ -62,7 +63,7 @@ spec:
         - name: ksp-core-amf-zero-trust
           description: This is a zero trust Kubearmor Policy for 5GCORE AMF component, which blocks external access to sensitive assets.
           kind: KubeArmorPolicy
-        - name: oran-amf-netpol
+        - name: netpol-core-amf
           description: This is a Network Policy for 5GCORE AMF component, which allows network access to certain ports.
           kind: NetworkPolicy
         - name: kyverno-core-readonly-volume-mounts
@@ -79,7 +80,7 @@ spec:
         - name: ksp-core-ausf-zero-trust
           description: This is a zero trust Kubearmor Policy for 5GCORE AUSF component, which blocks external access to sensitive assets.
           kind: KubeArmorPolicy
-        - name: oran-ausf-netpol
+        - name: netpol-core-ausf
           description: This is a Network Policy for 5GCORE AUSF component, which allows network access to certain ports.
           kind: NetworkPolicy
         - name: kyverno-core-readonly-volume-mounts
@@ -113,7 +114,7 @@ spec:
         - name: ksp-core-smf-zero-trust
           description: This is a zero trust Kubearmor Policy for 5GCORE SMF component, which blocks external access to sensitive assets.
           kind: KubeArmorPolicy
-        - name: oran-smf-netpol
+        - name: netpol-core-smf
           description: This is a Network Policy for 5GCORE SMF component, which allows network access to certain ports.
           kind: NetworkPolicy
         - name: kyverno-core-readonly-volume-mounts
@@ -147,7 +148,7 @@ spec:
         - name: ksp-core-udr-zero-trust
           description: This is a zero trust Kubearmor Policy for 5GCORE UDR component, which blocks external access to sensitive assets.
           kind: KubeArmorPolicy
-        - name: oran-udr-netpol
+        - name: netpol-core-udr
           description: This is a Network Policy for 5GCORE UDR component, which allows network access to certain ports.
           kind: NetworkPolicy
         - name: kyverno-core-readonly-volume-mounts
@@ -172,4 +173,4 @@ spec:
           kind: ClusterPolicy 
         - name: kyverno-core-restrict-sa-automount-sa-token
           description: This admission policy ensures that all volume mounts in the cluster are read only.
-          kind: ClusterPolicy 
+          kind: ClusterPolicy
