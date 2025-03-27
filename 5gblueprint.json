@@ -10,7 +10,7 @@
     "version": null,
     "controls": [
         {
-            "name": "Ingress/Egress from the necessary workloads",
+            "name": "Least Permissive Policies",
             "attributes": {},
             "description": "There should be kubearmor policies for the defined sensitive assets",
             "remediation": "Create a Kubearmor policy for the given assets",
@@ -343,14 +343,14 @@
             ]
         },
         {
-            "name": "No Egress connections should be allowed from NRF at runtime.",
+            "name": "Least Permissive Policies for log files protection applied",
             "attributes": {},
-            "description": "No Egress connections should be allowed from NRF at runtime.",
-            "remediation": "Create a Kubearmor policy to prevent installation of third party software deployment tools.",
-            "long_description": "No Egress connections should be allowed from NRF at runtime.",
-            "test": "Check that there are no pods which allow third party software deployment tools",
-            "id": "3GPP-33.501",
-            "controlID": "3GPP-33.501",
+            "description": "An attacker compromises O-RAN monitoring mechanisms and log files integrity and availability",
+            "remediation": "Create a Kubearmor policy for the given assets",
+            "long_description": "An attacker compromises O-RAN monitoring mechanisms and log files integrity and availability",
+            "test": "Check that there are no pods which do not have admission control policies as defined in the workload config",
+            "id": "T-ORAN-07",
+            "controlID": "T-ORAN-07",
             "baseScore": 8.0,
             "scanningScope": {
                 "matches": [
@@ -368,7 +368,7 @@
             },
             "rules": [
                 {
-                    "name": "5G-egress-ingress-defined",
+                    "name": "5G-least-permissive-policies",
                     "attributes": {},
                     "ruleLanguage": "Rego",
                     "match": [
@@ -385,13 +385,13 @@
                         },
                         {
                             "apiGroups": [
-                                "networking.k8s.io"
+                                "security.kubearmor.com"
                             ],
                             "apiVersions": [
                                 "v1"
                             ],
                             "resources": [
-                                "NetworkPolicy"
+                                "KubeArmorPolicy"
                             ]
                         },
                         {
@@ -407,10 +407,10 @@
                         }
                     ],
                     "ruleDependencies": [],
-                    "description": "fails if there are no ingress and egress defined for pod",
-                    "remediation": "Make sure you define ingress and egress policies for all your Pods",
+                    "description": "fails if there are no least permissive policies for sensitive assets",
+                    "remediation": "Make sure sensitive assets are protected with Kubearmor Policies",
                     "ruleQuery": "armo_builtins",
-                    "rule": "package armo_builtins\n\nimport future.keywords.in\n\ndeny[msga] {\n    # workloads := input.spec.workloads\n     \tworkloads := [w |  w= input[_]; w.kind == \"WorkloadConfig\"]\n        work := workloads[_]\n        # work_list := work.spec.workloads[_]\n\n        pods := [p | p = input[_]; p.kind == \"Deployment\"]\n        pod := pods[_]\n        not labels_match(work, pod)\n\n        msga := {\n\t\t\"alertMessage\": sprintf(\"Workload %v is not present\", [pod.metadata.name]),\n\t\t\"packagename\": \"armo_builtins\",\n\t\t\"alertScore\": 7,\n\t\t\"failedPaths\": [],\n\t\t\"fixPaths\": [],\n\t\t\"alertObject\": {\n\t\t\t\"k8sApiObjects\": [pod]\n\t\t}\n\t}\n}\n\ndeny[msga] {\n\n     \tworkloads := [w |  w= input[_]; w.kind == \"WorkloadConfig\"]\n        work := workloads[_]\n\n        pods := [p | p = input[_]; p.kind == \"Deployment\"]\n        pod := pods[_]\n\n\t\tnetworkpolicies := [networkpolicie |  networkpolicie= input[_]; networkpolicie.kind == \"NetworkPolicy\"]\n        labels_match(work, pod)\n\t\tnetwork_policies_connected_to_pod := [networkpolicie |  networkpolicie= networkpolicies[_];  check_zerotrust(work, networkpolicie)]\n\t\tcount(network_policies_connected_to_pod) < 1\n\n\n        msga := {\n\t\t\"alertMessage\": sprintf(\"Workload %v does NOT have a network policy\", [pod.metadata.name]),\n\t\t\"packagename\": \"armo_builtins\",\n\t\t\"alertScore\": 7,\n\t\t\"failedPaths\": [],\n\t\t\"fixPaths\": [{\"path\": sprintf(\"There are no Network Policies for 5G workloads: %v. Please add them\", [network_policies_connected_to_pod]),}],\n\t\t\"alertObject\": {\n\t\t\t\"k8sApiObjects\": [pod]\n\t\t}\n\t}\n}\n\n# Function to check if labels match between work_list and pod\nlabels_match(work, pod) {\n      some i\n\t  some key,value in work.spec.workloads[i].labels\n      pod.metadata.labels[key] == value\n}\n\ncheck_zerotrust(wlconfig, networkpolicie) {\n\tsome i\n\twlpolicie := wlconfig.spec.workloads[i].policies[_]\n\tnetworkpolicie.metadata.name == wlpolicie.name\n}\n\n\n\nlist_contains(list, element) {\n  some i\n  list[i] == element\n}\n\n\n"
+                    "rule": "package armo_builtins\n\nimport future.keywords.in\n\ndeny[msga] {\n    # workloads := input.spec.workloads\n     \tworkloads := [w |  w= input[_]; w.kind == \"WorkloadConfig\"]\n        work := workloads[_]\n        # work_list := work.spec.workloads[_]\n\n        pods := [p | p = input[_]; p.kind == \"Deployment\"]\n        pod := pods[_]\n        not labels_match(work, pod)\n\n        msga := {\n\t\t\"alertMessage\": sprintf(\"Workload %v is not present\", [pod.metadata.name]),\n\t\t\"packagename\": \"armo_builtins\",\n\t\t\"alertScore\": 7,\n\t\t\"failedPaths\": [],\n\t\t\"fixPaths\": [],\n\t\t\"alertObject\": {\n\t\t\t\"k8sApiObjects\": [pod]\n\t\t}\n\t}\n}\n\n\ndeny[msga] {\n\n     \tworkloads := [w |  w= input[_]; w.kind == \"WorkloadConfig\"]\n        work := workloads[_]\n\n        pods := [p | p = input[_]; p.kind == \"Deployment\"]\n        pod := pods[_]\n\n\t\tkubearmorpolicies := [kubearmorpolicie |  kubearmorpolicie= input[_]; kubearmorpolicie.kind == \"KubeArmorPolicy\"]\n        labels_match(work, pod)\n\t\tkubearmor_policies_connected_to_pod := [kubearmorpolicie |  kubearmorpolicie= kubearmorpolicies[_];  check_zerotrust(work, kubearmorpolicie)]\n\t\tcount(kubearmor_policies_connected_to_pod) < 1\n\n\n        msga := {\n\t\t\"alertMessage\": sprintf(\"Workload %v does NOT have any Kubearmor policy\", [pod.metadata.name]),\n\t\t\"packagename\": \"armo_builtins\",\n\t\t\"alertScore\": 7,\n\t\t\"failedPaths\": [],\n\t\t\"fixPaths\": [{\"path\": sprintf(\"There are no Kubearmor Policies for 5G workloads: %v. Please add them\", [kubearmor_policies_connected_to_pod]), \"value\":\"false\"}],\n\t\t\"alertObject\": {\n\t\t\t\"k8sApiObjects\": [pod]\n\t\t}\n\t}\n}\n\n# deny[msga] {\n\n#      \tworkloads := [w |  w= input[_]; w.kind == \"WorkloadConfig\"]\n#         work := workloads[_]\n\n#         pods := [p | p = input[_]; p.kind == \"Deployment\"]\n#         pod := pods[_]\n\n# \t\tkubearmorpolicies := [kubearmorpolicie |  kubearmorpolicie= input[_]; kubearmorpolicie.kind == \"KubeArmorPolicy\"]\n#         labels_match(work, pod)\n# \t\tkubearmor_policies_connected_to_pod := [kubearmorpolicie |  kubearmorpolicie= kubearmorpolicies[_];  check_zerotrust(work, kubearmorpolicie)]\n# \t\tcount(kubearmor_policies_connected_to_pod) > 0\n\t\t \n#         msga := {\n# \t\t\"alertMessage\": sprintf(\"Workload %v does have zero Kubearmor policy\", [pod.metadata.name]),\n# \t\t\"packagename\": \"armo_builtins\",\n# \t\t\"alertScore\": 7,\n# \t\t\"failedPaths\": [],\n# \t\t\"fixPaths\": [],\n# \t\t\"alertObject\": {\n# \t\t\t\"k8sApiObjects\": [pod]\n# \t\t}\n# \t}\n# }\n\ncheck_zerotrust(wlconfig, kubearmorpolicie) {\n\tsome i\n\twlpolicie := wlconfig.spec.workloads[i].policies[_]\n\tkubearmorpolicie.metadata.name == wlpolicie.name\n}\n\n# deny[msga] {\n\n#         pods := [p | p = input[_]; p.kind == \"Deployment\"]\n#         pod := pods[_]\n\n# \t\tworkloads := [w |  w= input[_]; w.kind == \"WorkloadConfig\"]\n#         work := workloads[_]\n\n# \t\tkubearmorpolicies := [kubearmorpolicie |  kubearmorpolicie= input[_]; kubearmorpolicie.kind == \"KubeArmorPolicy\"]\n#         labels_match(work, pod)\n# \t\tkubearmor_policies_connected_to_pod := [kubearmorpolicie |  kubearmorpolicie= kubearmorpolicies[_];  wlConnectedToKubeArmorPolicy(pod, kubearmorpolicie)]\n# \t\tcount(kubearmor_policies_connected_to_pod)  0\n# \t    # goodPolicies := [goodpolicie |  goodpolicie= kubearmor_policies_connected_to_pod[_];  sensitiveAssetsDirProtected(pod, goodpolicie)]\n# \t    # count(goodPolicies) < 1\n\n#         msga := {\n# \t\t\"alertMessage\": sprintf(\"Workload %v does have Least Permissive Policies for sensitive assets\", [pod.metadata.name]),\n# \t\t\"packagename\": \"armo_builtins\",\n# \t\t\"alertScore\": 7,\n# \t\t\"failedPaths\": [],\n# \t\t\"fixPaths\": [],\n# \t\t\"alertObject\": {\n# \t\t\t\"k8sApiObjects\": [pod]\n# \t\t}\n# \t}\n# }\n# Function to check if labels match between work_list and pod\nlabels_match(work, pod) {\n      some i\n\t  some key,value in work.spec.workloads[i].labels\n      pod.spec.selector.matchLabels[key] == value\n}\n\nwlConnectedToKubeArmorPolicy(wl, kubearmorpolicie){\n    count(kubearmorpolicie.spec.selector.matchLabels) == 0\n}\n\n\nwlConnectedToKubeArmorPolicy(wl, kubearmorpolicie){\n\tcount(kubearmorpolicie.spec.selector.matchLabels) > 0\n    count({x | kubearmorpolicie.spec.selector.matchLabels[x] == wl.spec.template.metadata.labels[x]}) == count(kubearmorpolicie.spec.selector.matchLabels)\n}\n\n# sensitiveAssetsDirProtected(wlconfig, kubearmorpolicie) {\n# \tsome i\n# \tsome j\n# \tendswith(wlconfig.spec.workloads[i].sensitive_asset_locations[j], \"/\")\n# \tasset := wlconfig.spec.workloads[i].sensitive_asset_locations[j]\n# \tsome k\n# \tkubearmorpolicie.spec.matchDirectories[k].dir == asset\n# }\n\n# sensitiveAssetsPathProtected(wlconfig, kubearmorpolicie) {\n# \tnot sensitiveAssetsDirProtected(wlconfig, kubearmorpolicie)\n# }\n\n\n\n\n"
                 }
             ]
         }
@@ -420,6 +420,6 @@
         "T-ORAN-02",
         "T-ORAN-03",
         "MITRE-FGT1072",
-        "3GPP-33.501"
+        "T-ORAN-07"
     ]
 }
